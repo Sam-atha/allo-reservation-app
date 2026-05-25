@@ -14,7 +14,7 @@ type Reservation = {
 export default function ReservationPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
   const [reservation, setReservation] = useState<Reservation | null>(null);
   const [message, setMessage] = useState("");
@@ -22,7 +22,7 @@ export default function ReservationPage({
 
   useEffect(() => {
     async function loadReservation() {
-      const resolvedParams = await params;
+      const resolvedParams = params;
       const res = await fetch(`/api/reservations/${resolvedParams.id}`, {
         cache: "no-store",
       });
